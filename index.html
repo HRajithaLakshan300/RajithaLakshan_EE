@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Personal portfolio: who I am, achievements and projects." />
+
+  <!-- Google Font (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: linear-gradient(135deg,#6ee7b7 0%,#60a5fa 100%);
+      --glass: rgba(255,255,255,0.03);
+      --radius: 14px;
+      --max-width: 1100px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; */
+        margin: 0;
+        padding: 0;
+        background-image: url('assets/wallpaper_1.jpg'); /* your wallpaper */
+        background-position: center; /* centers the image */
+        background-repeat: no-repeat; /* avoids tiling */
+        background-size: cover; /* makes it cover entire screen */
+        background-attachment: fixed; /* optional: keeps wallpaper fixed on scroll */
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        color: #e6eef6;
+        scroll-behavior: smooth; /* smooth scroll for anchor links */
+        
+    }/* Initial state of the section - invisible and slightly down */
+    .fade-in {
+    opacity: 0;                 /* completely transparent */
+    transform: translateY(20px); /* move down 20px */
+    transition: all 0.8s ease-out; /* smooth transition */
+    }
+
+    /* Visible state - slide up and appear */
+    .fade-in.visible {
+    opacity: 1;                 /* fully visible */
+    transform: translateY(0);    /* move to original position */
+    }
+        .nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    }
+
+    .nav-menu li a {
+    text-decoration: none;
+    color: #ffffff; /* default link color */
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease; /* smooth hover effect */
+    }
+
+    /* Hover effect */
+    .nav-menu li a:hover {
+    background-color: #041020; /* highlight color */
+    color: #ffffff;
+    transform: scale(1.1); /* slightly enlarge */
+    }
+
+    /* Active section link */
+    .nav-menu li a.active {
+    background-color: #2563eb; /* darker highlight */
+    color: #fff;
+    }
+
+    /* Example class for colored + shadow text */
+    .highlight {
+    color: #60a5fa; /* change this to any color you like */
+    font-weight: bold; /* optional bold */
+    text-shadow: 2px 2px 4px #000000; /* horizontal, vertical, blur, color */
+    }
+    .hover-highlight {
+    color: #ffffff; /* default text color */
+    font-weight: bold; /* optional */
+    transition: all 0.3s ease; /* smooth transition */
+    cursor: pointer; /* shows pointer when hovering */
+    }
+
+    /* When cursor hovers */
+    .hover-highlight:hover {
+    color: #60a5fa; /* change text color on hover */
+    text-shadow: 2px 2px 4px #000000; /* adds shadow */
+    transform: scale(1.1); /* slightly enlarges the word */
+    }
+
+    /* Highlight text on hover */
+    .hover-highlight-text {
+        transition: all 0.3s ease; /* smooth effect */
+        cursor: text; /* shows text cursor */
+    }
+
+    .hover-highlight-text:hover {
+        background-color: #01040a; /* dark background (slate-800) */
+        color: #ffffff; /* white text */
+        padding: 4px 6px; /* add some padding so highlight looks clear */
+        border-radius: 8px; /* rounded highlight */
+    }
+    .activity-logo {
+    text-align: left;
+    margin-top: -100px;
+    }
+
+    .activity-logo img {
+    width: 150px; /* adjust size */
+    height: auto;
+    margin-bottom: 12px;
+    }
+
+    .activity-logo p {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    }
+    .card {
+    background: #222; /* dark background */
+    color: #fff;      /* white text */
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px; /* add spacing between cards */
+    }
+    .small.muted {
+    color: #aaa; /* lighter text for details */
+    }
+
+
+        .achievement-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #222;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    }
+
+    .achievement-images {
+    display: flex;
+    flex-direction: column; /* stack images vertically */
+    gap: 8px;
+    }
+
+    .achievement-images img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    }
+
+    .achievement-text {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .achievement-text .title {
+    font-weight: 700;
+    font-size: 16px;
+    }
+
+    .achievement-text .detail {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 4px;
+    }
+
+
+
+    
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:#e6eef6;}
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:var(--max-width);margin:36px auto;padding:20px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-weight:800;color:#082;box-shadow:0 6px 24px rgba(0,0,0,0.5)}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{font-weight:600;color:var(--muted)}
+    
+
+    /* Mobile nav toggle */
+    .hamburger{display:none;border:0;background:transparent;color:var(--muted);font-size:22px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:var(--radius);box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+    .intro h1{margin:0;font-size:34px;line-height:1.02}
+    .intro p{color:var(--muted);margin-top:10px}
+    .actions{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#1f2937,transparent);border:1px solid rgba(255,255,255,0.04);cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--accent);color:#0b1220}
+
+    .card-profile{background:var(--card);padding:18px;border-radius:12px}
+    .avatar{width:100%;height:220px;border-radius:8px;background:linear-gradient(135deg,#1f2937,#111827);display:grid;place-items:center;color:var(--muted)}
+
+    /* Sections */
+    section{margin-top:26px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{background:var(--card);padding:16px;border-radius:12px}
+    .muted{color:var(--muted)}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .proj-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+    .proj-media{height:120px;border-radius:8px;background:linear-gradient(135deg,#0b1220,#0f1826);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:var(--glass);color:var(--muted)}
+
+    footer{margin-top:30px;padding:20px;text-align:center;color:var(--muted)}
+
+    /* @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:700px){
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      .projects-grid{grid-template-columns:1fr}
+      nav{display:none}
+      .hamburger{display:block}
+    }
+     */
+    /* Mobile: hide nav links and show hamburger */
+    @media (max-width:700px){
+    nav {
+        display: none; /* hide horizontal nav */
+        flex-direction: column;
+        position: fixed;   /* sidebar */
+        top: 0;
+        left: -250px;      /* hidden by default */
+        width: 250px;
+        height: 100%;
+        background-color: #0b1220;
+        padding-top: 60px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+    nav.open {
+        left: 0; /* slide in */
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .hamburger {
+        display: block;
+    }
+    }
+
+
+    /* small helper */
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" id="logo">YL</div>
+        <div>
+          <div id="site-name" style="font-weight:700">Your Name</div>
+          <div class="small"> •Undergraduate Student •Electrical Engineer</div>
+        </div>
+      </div>
+
+
+      <nav id="main-nav">
+        <ul class="nav-menu">
+            <li><a href="#about"><span style=font-size:20px;>About</span></a></li>
+            <li><a href="#Activity"><span style=font-size:20px;>Activity</span></a></li>
+            <li><a href="#achievements"><span style=font-size:20px;>Achievements</span></a></li>
+            <li><a href="#projects"><span style=font-size:20px;>Projects</span></a></li>
+            <li><a href="#contact"><span style=font-size:20px;>Contact</span></a></li>
+        </ul>
+      </nav>
+
+
+      <button class="hamburger" id="menuBtn">☰</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h1 id="hero-title">Hello 👋- I am <span id="hero-name">Rajitha Lakshan 👋</span></h1>
+          <p id="hero-sub">A short headline about you. Example: "Electrical engineering student enthusiastic about robotics, power systems, and technological innovations."</p>
+
+          <div class="actions">
+            <a class="btn " id="downloadCV" href="#contact"><span class="hover-highlight">Contact Me</span></a>
+            <a class="btn" id="viewProjects" href="#projects"><span class="hover-highlight">See Projects</span></a>
+          </div>
+
+          <div style="margin-top:18px" class="small muted">:<code></code> </div>
+        </div>
+
+        <div class="card-profile">
+          <div class="avatar">
+            <img src="assets/profile.jpeg" alt="Rajitha Lakshan" style="width:100%;height:100%;object-fit:cover;border-radius:8px">
+            <!-- Replace with your image: <img src="assets/you.jpg" alt="Your name" style="width:100%;height:100%;object-fit:cover;border-radius:8px"> -->
+          
+          </div>
+
+          <div style="margin-top:12px">
+            <div style="font-weight:700">Contact</div>
+            <div class="small muted" id="contact-email">your.email@example.com</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="fade-in visible">
+          <h3><span class="hover-highlight" style=font-size:30px;>About me</span></h3>
+          <p id="about-text" class="muted hover-highlight-text">
+            Hello, I’m Rajitha Lakshan, an undergraduate student in the <b>Electrical Engineering</b> Department at the University of Moratuwa. I am deeply interested in power systems, robotics and automation, AI and machine learning, as well as electronic applications. I enjoy exploring new technologies and applying my knowledge to solve real-world engineering challenges.</p>
+        </div>
+      </section>
+
+      <section id="Activity">
+        <h3 style="margin-top:18px"><span class="hover-highlight" style=font-size:30px;>Activity</span></h3>
+        <div class="fade-in" id="Activity-grid">
+          <!-- Achievements will be rendered here -->
+        </div>
+        <div class="activity-logo">
+        <img src="assets/EEsoc.jpeg" alt="My Logo">
+        <p><span style="color: rgb(255, 255, 255); font-size: 16px;"><a href="https://www.linkedin.com/company/eesoc-uom/posts/?feedView=all" target="_blank" id="hero-name-link" class="hover-highlight">Student Activity -Team member</a></span></p>
+      </section>
+
+      <section id="achievements">
+        <h3 style="margin-top:18px"><span class="hover-highlight"style=font-size:30px;>Achievements</span></h3>
+        <div class="fade-in visible" id="achievements-grid">
+          <!-- Achievements will be rendered here -->
+        </div>
+      </section>
+      
+
+
+      <section id="projects">
+        <h3 style="margin-top:18px"><span class="hover-highlight" style=font-size:30px;>Projects</span></h3>
+        <div class="fade-in" id="projects-grid"></div>
+      </section>
+
+      <section id="contact">
+        <h3 style="margin-top:18px"><span class="hover-highlight" style=font-size:30px;>Contact</span></h3>
+        <div class="card">
+          <p class="muted hover-highlight-text">Email: <a id="mailto-link" href="mailto:your.email@example.com">h.rajithalakshan300@gmail.com</a></p>
+          <p class="muted hover-highlight-text">LinkedIn: <a id="linkedin-link" href="#" target="_blank">My LinkedIn</a></p>
+          <p class="muted hover-highlight-text"></p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      Just as thoughts spark in the mind, electricity sparks in circuits, illuminating the world around us
+    </footer>
+  </div>
+
+  <script>
+    /*****************************************************************
+     * QUICK EDIT REGION
+     * Edit the SITE, ACHIEVEMENTS and PROJECTS arrays below to change
+     * all the content on the page. Save and reload the file in your
+     * browser to preview changes.
+     *****************************************************************/
+
+    const SITE = {
+      name: "Rajitha Lakshan",
+      short: "Electrical engineering student enthusiastic about Robotics , power systems,Electronic and Automation",
+      email: "h.rajithalakshan300@gmail.com",
+      linkedin: "https://www.linkedin.com/in/rajitha-lakshan-126303317/",
+      logoText: "RL" // will appear in the square logo
+    };
+    const Activity = [
+      {title: "", detail: "Top 5% of the class"},
+      {title: "Robotics Competition", detail: "Second place — inter-university"},
+      {title: "IEEE Paper", detail: "Published a short paper on motor control"}
+    ];
+
+    // const ACHIEVEMENTS = [
+    //   {title: "O/L Examination results A-9",detail:"",img:[]},
+    //   {title: "Advace Level Examination results A-3 (Physical Science Stream)", detail: "Combine Maths,Physics,Chemistry",img:[]},
+    //   {title: "University of Moratuwa", detail: "Faculty of Engineering", img: ["assets/uom.jpeg"]}
+     
+    // ];
+    const ACHIEVEMENTS = [
+    {
+        title: "O/L Examination results A9",
+        detail: "",
+        images: [],
+        link: ""
+    },
+    {
+        title: "Advace Level Examination results A-3 (Physical Science Stream)",
+        detail: "Combine Maths,Physics,Chemistry",
+        images: [],
+        link: ""
+    },
+    {
+        title: "University of Moratuwa",
+        detail: "Faculty of Engineering",
+        images: ["assets/uom.jpeg"],
+        link: "https://www.uom.lk/"
+    },
+    {
+        title: "Department of Electrical Engineering ",
+        detail: "University of Moratuwa",
+        images: ["assets/images.png"],
+        link: "https://uom.lk/elect"
+    }
+    ];
+
+    const PROJECTS = [
+      {title: "Micromouse Robot", desc: "A maze-solving micromouse built with AVR microcontroller and PID control.", tags:["C", "Embedded", "Robotics"], repo: "https://github.com/your/repo1", live: ""},
+      {title: "Power Plant Automation Simulator", desc: "A small web-based simulation to demonstrate valve control and SCADA visuals.", tags:["JS","Simulation","Power"], repo:"https://github.com/your/repo2", live: ""},
+      {title: "PCB Design Practice", desc: "Designed a microcontroller development board and produced Gerbers.", tags:["PCB","Altium"], repo:"", live: ""}
+    ];
+    // Highlight active nav link while scrolling
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-menu li a");
+
+    window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 60;
+        if(pageYOffset >= sectionTop) current = section.getAttribute("id");
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if(link.getAttribute("href") === "#" + current){
+        link.classList.add("active");
+        }
+    });
+    });
+
+
+    /*****************************************************************
+     * DO NOT CHANGE BELOW UNLESS YOU KNOW WHAT YOU'RE DOING
+     *****************************************************************/
+
+    // populate header
+    document.getElementById('site-name').textContent = SITE.name;
+    document.getElementById('hero-name').textContent = SITE.name;
+    document.getElementById('hero-sub').textContent = SITE.short;
+    document.getElementById('contact-email').textContent = SITE.email;
+    document.getElementById('mailto-link').href = `mailto:${SITE.email}`;
+    document.getElementById('linkedin-link').href = SITE.linkedin;
+    document.getElementById('linkedin-link').textContent = "My LinkedIn";
+
+    document.getElementById('logo').textContent = SITE.logoText || SITE.name.split(' ').map(s=>s[0]).slice(0,2).join('');
+    // activity
+    const actCont = document.getElementById('Activity-grid');
+    actCont.innerHTML = '';
+    Activity.forEach(a=>{
+    const el = document.createElement('div');
+    el.className = 'activity-card';
+    el.innerHTML = `<div style="font-weight:700">${a.title}</div>
+                    <div class="small muted" style="margin-top:6px">${a.detail}</div>`;
+    actCont.appendChild(el);
+    });
+
+
+    // const achCont = document.getElementById('achievements-grid');
+    // achCont.innerHTML = '';
+
+    // ACHIEVEMENTS.forEach(a => {
+    // const el = document.createElement('div');
+    // el.className = 'achievement-card';
+    
+    // let imagesHtml = '';
+    // if (a.images && a.images.length > 0) {
+    //     imagesHtml = `<div class="achievement-images">
+    //                     ${a.images.map(img => `<img src="${img}" alt="${a.title}">`).join('')}
+    //                 </div>`;
+    // }
+    
+    // el.innerHTML = `
+    //     ${imagesHtml}
+    //     <div class="achievement-text" style="${!imagesHtml ? 'flex:1;' : ''}">
+    //     <div class="title">${a.title}</div>
+    //     <div class="detail">${a.detail}</div>
+    //     </div>
+    // `;
+    
+    // achCont.appendChild(el);
+    // });
+    const achCont = document.getElementById('achievements-grid');
+    achCont.innerHTML = '';
+
+    ACHIEVEMENTS.forEach(a => {
+        const el = document.createElement('div');
+        el.className = 'achievement-card';
+        
+        // Prepare images HTML
+        let imagesHtml = '';
+        if (a.images && a.images.length > 0) {
+            imagesHtml = `<div class="achievement-images">
+                            ${a.images.map(img => 
+                                a.link ? 
+                                `<a href="${a.link}" target="_blank"><img src="${img}" alt="${a.title}"></a>` : 
+                                `<img src="${img}" alt="${a.title}">`
+                            ).join('')}
+                        </div>`;
+        }
+
+        // Prepare title HTML (linked if a.link exists)
+        const titleHtml = a.link 
+            ? `<a href="${a.link}" target="_blank" style="color:#60a5fa;text-decoration:underline">${a.title}</a>` 
+            : a.title;
+
+        // Build full achievement card
+        el.innerHTML = `
+            ${imagesHtml}
+            <div class="achievement-text" style="${!imagesHtml ? 'flex:1;' : ''}">
+                <div class="title">${titleHtml}</div>
+                <div class="detail">${a.detail}</div>
+            </div>
+        `;
+        
+        achCont.appendChild(el);
+    });
+
+
+
+    // projects
+    const projCont = document.getElementById('projects-grid');
+    projCont.innerHTML = '';
+    PROJECTS.forEach(p=>{
+      const c = document.createElement('div'); c.className='proj-card';
+      const tagsHtml = (p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
+      const repoHtml = p.repo ? `<a href="${p.repo}" target="_blank" class="small" style="display:inline-block;margin-top:10px">View repo</a>`: '';
+      const liveHtml = p.live ? `<a href="${p.live}" target="_blank" class="small" style="display:inline-block;margin-left:12px;margin-top:10px">Live demo</a>`: '';
+      c.innerHTML = `<div class="proj-media">${p.title.split(' ').slice(0,3).map(s=>s[0]).join('').toUpperCase()}</div>
+                     <div style="margin-top:8px;font-weight:700">${p.title}</div>
+                     <div class="small muted" style="margin-top:6px">${p.desc}</div>
+                     <div class="tags">${tagsHtml}</div>
+                     <div>${repoHtml}${liveHtml}</div>`;
+      projCont.appendChild(c);
+    });
+
+    // mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('main-nav');
+    menuBtn.addEventListener('click', ()=>{
+      mainNav.classList.toggle('open');
+      const nav = document.getElementById('main-nav');
+      if(nav.style.display === 'flex') nav.style.display = '';
+      else nav.style.display = 'flex';
+      nav.style.flexDirection = 'column';
+    });
+
+    // smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>
